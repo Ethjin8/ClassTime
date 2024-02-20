@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:classtime_app/components/dialog_box.dart';
-import 'package:classtime_app/components/todo_tile.dart';
+import 'package:classtime_app/components/assignments_tile.dart';
 
 class AssignmentsPage extends StatefulWidget {
   final String className;
@@ -20,20 +20,20 @@ class AssignmentsPage extends StatefulWidget {
 class _AssignmentsPageState extends State<AssignmentsPage> {
   final _controller = TextEditingController();
 
-  List toDoList = [
-    ["Complete math homework", false],
-    ["Read chapter 5", false],
+  List assignmentsList = [
+    ["Add an assignment to get started! \nSwipe right to delete this tile", false],
   ];
 
   void checkBoxChanged(bool? value, int index) {
     setState(() {
-      toDoList[index][1] = !toDoList[index][1];
+      assignmentsList[index][1] = assignmentsList[index][1];
     });
   }
 
   void saveNewTask() {
     setState(() {
-      toDoList.add([_controller.text, false]);
+      assignmentsList.add([_controller.text, false]);
+      _controller.clear();
     });
     Navigator.of(context).pop();
   }
@@ -51,26 +51,33 @@ class _AssignmentsPageState extends State<AssignmentsPage> {
     );
   }
 
+  void deleteTask(int index) {
+    setState(() {
+      assignmentsList.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.yellow[200],
         appBar: AppBar(
           title: Text(widget.className),
-          backgroundColor: Colors.yellow,
+          backgroundColor: Colors.blue.shade100,
           elevation: 15,
         ),
+        backgroundColor: Color.fromARGB(188, 25, 147, 246),
         floatingActionButton: FloatingActionButton(
           onPressed: createNewTask,
           child: const Icon(Icons.add),
         ),
         body: ListView.builder(
-          itemCount: toDoList.length,
+          itemCount: assignmentsList.length,
           itemBuilder: (context, index) {
-            return ToDoTile(
-              taskName: toDoList[index][0],
-              taskCompleted: toDoList[index][1],
+            return AssignmentsTile(
+              taskName: assignmentsList[index][0],
+              taskCompleted: assignmentsList[index][1],
               onChanged: (value) => checkBoxChanged(value, index),
+              deleteFunction: (context) => deleteTask(index),
             );
           },
         ));

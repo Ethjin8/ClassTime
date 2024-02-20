@@ -18,7 +18,6 @@ class DialogBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: Colors.yellow[300],
       content: SizedBox(
         height: 120,
         child:
@@ -30,14 +29,19 @@ class DialogBox extends StatelessWidget {
               hintText: "Add a new task",
             ),
           ),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            MyButton(
-              text: "Save",
-              onPressed: onSave,
-            ),
-            MyButton(text: "Cancel", onPressed: onCancel),
-            const SizedBox(width: 8),
-          ])
+          SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              MyButton(
+                text: "Save",
+                onPressed: onSave,
+              ),
+              SizedBox(width: 10),
+              MyButton(text: "Cancel", onPressed: onCancel),
+              const SizedBox(width: 8),
+            ],
+          ),
         ]),
       ),
     );
