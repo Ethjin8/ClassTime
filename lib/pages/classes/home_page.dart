@@ -160,8 +160,8 @@ class _HomePageState extends State<HomePage> {
                   Map<String, List<MapEntry<String, List<DocumentSnapshot>>>>
                       sortedEntries = {
                     "Today": [],
-                    "Past": [],
                     "Future": [],
+                    "Past": [],
                   };
 
                   for (var entry in entries) {
@@ -178,10 +178,27 @@ class _HomePageState extends State<HomePage> {
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: ShaderMask(
-                                shaderCallback: (bounds) => const LinearGradient(
-                                  colors: [Colors.blue, Colors.purple],
-                                  tileMode: TileMode.mirror,
-                                ).createShader(bounds),
+                                shaderCallback: (bounds) {
+                                  if (key == "Future") {
+                                    return LinearGradient(
+                                      colors: [
+                                        Colors.yellow[700]!,
+                                        Colors.green
+                                      ],
+                                      tileMode: TileMode.mirror,
+                                    ).createShader(bounds);
+                                  } else if (key == "Today") {
+                                    return LinearGradient(
+                                      colors: [Colors.red, Colors.orange],
+                                      tileMode: TileMode.mirror,
+                                    ).createShader(bounds);
+                                  } else {
+                                    return LinearGradient(
+                                      colors: [Colors.blue, Colors.purple],
+                                      tileMode: TileMode.mirror,
+                                    ).createShader(bounds);
+                                  }
+                                },
                                 child: Text(
                                   key,
                                   style: const TextStyle(
@@ -250,20 +267,24 @@ class _HomePageState extends State<HomePage> {
                                 padding: const EdgeInsets.only(
                                     left: 8.0,
                                     right: 12.0), // Adjust padding here
-                                child: const Icon(Icons.search, color: Colors.white),
+                                child: const Icon(Icons.search,
+                                    color: Colors.white),
                               ),
                               contentPadding: const EdgeInsets.symmetric(
                                   vertical: 8, horizontal: 12),
                               border: OutlineInputBorder(
-                                borderSide: const BorderSide(color: Colors.white),
+                                borderSide:
+                                    const BorderSide(color: Colors.white),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color: Colors.white),
+                                borderSide:
+                                    const BorderSide(color: Colors.white),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color: Colors.white),
+                                borderSide:
+                                    const BorderSide(color: Colors.white),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                             ),
