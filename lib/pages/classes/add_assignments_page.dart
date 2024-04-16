@@ -475,6 +475,7 @@ class _AssignmentsPageState extends State<AssignmentsPage> {
           "dueTime": selectedTime.format(context),
           "subject": subjectType,
           "timeNeeded": _currentSliderValue.toString(),
+          "check": false,
         }).then((value) {
           Navigator.pop(context);
         });
