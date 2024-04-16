@@ -10,7 +10,7 @@ import 'package:collection/collection.dart';
 import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
     await FirebaseAuth.instance.signOut();
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => AuthPage()),
+      MaterialPageRoute(builder: (context) => const AuthPage()),
     );
   }
 
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             "Schedule",
             style: TextStyle(
               fontSize: 34,
@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           backgroundColor: Colors.black,
-          iconTheme: IconThemeData(color: Colors.white),
+          iconTheme: const IconThemeData(color: Colors.white),
           actions: [
             IconButton(
               onPressed: signUserOut,
@@ -130,7 +130,7 @@ class _HomePageState extends State<HomePage> {
                       child: CircularProgressIndicator(),
                     );
                   }
-                  final docs = snapshot.data!.docs as List<DocumentSnapshot>;
+                  final docs = snapshot.data!.docs;
                   final groupedDocs = groupBy(docs,
                       (doc) => (doc.data() as Map<String, dynamic>)['dueDate']);
 
@@ -164,9 +164,9 @@ class _HomePageState extends State<HomePage> {
                     "Future": [],
                   };
 
-                  entries.forEach((entry) {
+                  for (var entry in entries) {
                     sortedEntries[formatDate(entry.key)]!.add(entry);
-                  });
+                  }
 
                   sortedEntries.forEach((key, value) {
                     if (value.isNotEmpty) {
@@ -178,13 +178,13 @@ class _HomePageState extends State<HomePage> {
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: ShaderMask(
-                                shaderCallback: (bounds) => LinearGradient(
+                                shaderCallback: (bounds) => const LinearGradient(
                                   colors: [Colors.blue, Colors.purple],
                                   tileMode: TileMode.mirror,
                                 ).createShader(bounds),
                                 child: Text(
                                   key,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 24,
                                       fontWeight: FontWeight.bold),
@@ -203,7 +203,7 @@ class _HomePageState extends State<HomePage> {
                                       DateFormat('MMMM dd').format(
                                           DateTime.parse(
                                               entry.key)), // Format the date
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold),
@@ -213,9 +213,7 @@ class _HomePageState extends State<HomePage> {
                                     Map<String, dynamic> data =
                                         doc.data() as Map<String, dynamic>;
                                     return AssignmentsTile(
-                                      title: data['title'] == null
-                                          ? "Untitled"
-                                          : data['title'],
+                                      title: data['title'] ?? "Untitled",
                                       time: data['dueTime'],
                                       documentID: doc.id,
                                     );
@@ -241,38 +239,38 @@ class _HomePageState extends State<HomePage> {
                                 searchQuery = value;
                               });
                             },
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 18,
                               color: Colors.white,
                             ),
                             decoration: InputDecoration(
                               hintText: 'Find an assignment',
-                              hintStyle: TextStyle(color: Colors.white),
+                              hintStyle: const TextStyle(color: Colors.white),
                               prefixIcon: Container(
                                 padding: const EdgeInsets.only(
                                     left: 8.0,
                                     right: 12.0), // Adjust padding here
-                                child: Icon(Icons.search, color: Colors.white),
+                                child: const Icon(Icons.search, color: Colors.white),
                               ),
-                              contentPadding: EdgeInsets.symmetric(
+                              contentPadding: const EdgeInsets.symmetric(
                                   vertical: 8, horizontal: 12),
                               border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
+                                borderSide: const BorderSide(color: Colors.white),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
+                                borderSide: const BorderSide(color: Colors.white),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
+                                borderSide: const BorderSide(color: Colors.white),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                             ),
                           ),
                         ),
                         if (assignmentWidgets.isEmpty)
-                          Center(
+                          const Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -289,8 +287,8 @@ class _HomePageState extends State<HomePage> {
                           )
                         else
                           ...assignmentWidgets,
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 70.0),
+                        const Padding(
+                          padding: EdgeInsets.only(bottom: 70.0),
                         ),
                       ],
                     ),
@@ -321,13 +319,13 @@ class _HomePageState extends State<HomePage> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => AssignmentsPage()),
+              MaterialPageRoute(builder: (context) => const AssignmentsPage()),
             );
           },
           child: Container(
             height: 52,
             width: 52,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               gradient: LinearGradient(
                 colors: [
@@ -336,7 +334,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            child: Icon(Icons.add, color: Colors.white), // Plus sign
+            child: const Icon(Icons.add, color: Colors.white), // Plus sign
           ),
         ),
       ),

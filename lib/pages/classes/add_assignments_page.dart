@@ -5,17 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AssignmentsPage extends StatefulWidget {
+  const AssignmentsPage({super.key});
+
   @override
   _AssignmentsPageState createState() => _AssignmentsPageState();
 }
 
 class _AssignmentsPageState extends State<AssignmentsPage> {
-  TextEditingController _titleController = TextEditingController();
-  TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
   String taskType = "";
   String subjectType = "";
   String priority = "";
-  TextEditingController _dateController = TextEditingController();
+  final TextEditingController _dateController = TextEditingController();
   TimeOfDay selectedTime = TimeOfDay.now();
   double _currentSliderValue = 0;
 
@@ -225,11 +227,11 @@ class _AssignmentsPageState extends State<AssignmentsPage> {
   }
 
   Widget typeSelect() {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Align(
         alignment: Alignment.center,
-        child: Container(
+        child: SizedBox(
           height: 70, // Increase the height
           width: 200,
           child: DropdownButtonFormField<String>(
@@ -270,11 +272,11 @@ class _AssignmentsPageState extends State<AssignmentsPage> {
   }
 
   Widget subjectSelect() {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Align(
         alignment: Alignment.center,
-        child: Container(
+        child: SizedBox(
           height: 70, // Increase the height
           width: 200,
           child: DropdownButtonFormField<String>(
@@ -373,7 +375,7 @@ class _AssignmentsPageState extends State<AssignmentsPage> {
   }
 
   Future<void> _showDatePicker() async {
-    DateTime? _picked = await showDatePicker(
+    DateTime? picked = await showDatePicker(
       context: context,
       initialDate: _dateController.text.isEmpty
           ? DateTime.now()
@@ -382,9 +384,9 @@ class _AssignmentsPageState extends State<AssignmentsPage> {
       lastDate: DateTime(2050),
     );
 
-    if (_picked != null) {
+    if (picked != null) {
       setState(() {
-        _dateController.text = _picked.toString().split(" ")[0];
+        _dateController.text = picked.toString().split(" ")[0];
       });
     } else {
       setState(() {
@@ -483,7 +485,7 @@ class _AssignmentsPageState extends State<AssignmentsPage> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           gradient: LinearGradient(
-            colors: [
+            colors: const [
               Color(0xff2664fa),
               Color(0xffad32f9),
             ],

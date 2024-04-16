@@ -9,7 +9,7 @@ class AssignmentsTile extends StatefulWidget {
   final String time;
   final String documentID;
 
-  AssignmentsTile({
+  const AssignmentsTile({
     Key? key,
     required this.title,
     required this.time,
@@ -109,7 +109,7 @@ class _AssignmentsTileState extends State<AssignmentsTile> {
                 ),
                 actions: <Widget>[
                   TextButton(
-                    child: Text('Close'),
+                    child: const Text('Close'),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -120,7 +120,7 @@ class _AssignmentsTileState extends State<AssignmentsTile> {
           },
         );
       },
-      child: Container(
+      child: SizedBox(
         width: MediaQuery.of(context).size.width, // Adjust the width here
         child: Slidable(
           endActionPane: ActionPane(
@@ -146,8 +146,8 @@ class _AssignmentsTileState extends State<AssignmentsTile> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5),
                     ),
-                    activeColor: Color(0xff6cf8a9),
-                    checkColor: Color(0xff0e3e26),
+                    activeColor: const Color(0xff6cf8a9),
+                    checkColor: const Color(0xff0e3e26),
                     value: check,
                     onChanged: (bool? value) {
                       setState(() {
@@ -162,27 +162,27 @@ class _AssignmentsTileState extends State<AssignmentsTile> {
                 ),
                 data: ThemeData(
                   primarySwatch: Colors.blue,
-                  unselectedWidgetColor: Color(0xff5e616a),
+                  unselectedWidgetColor: const Color(0xff5e616a),
                 ),
               ),
               Expanded(
-                child: Container(
+                child: SizedBox(
                   height: 75,
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    color: Color(0xff2a2e3d),
+                    color: const Color(0xff2a2e3d),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 12,
                         ),
                         Expanded(
                           child: Text(
                             widget.title,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 18,
                               letterSpacing: 1,
                               fontWeight: FontWeight.w500,
@@ -194,7 +194,7 @@ class _AssignmentsTileState extends State<AssignmentsTile> {
                           padding: const EdgeInsets.only(left: 10.0),
                           child: Text(
                             widget.time,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 18,
                               letterSpacing: 1,
                               fontWeight: FontWeight.w500,
@@ -202,7 +202,7 @@ class _AssignmentsTileState extends State<AssignmentsTile> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 12,
                         ),
                       ],
