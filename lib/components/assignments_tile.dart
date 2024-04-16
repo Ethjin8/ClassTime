@@ -31,10 +31,17 @@ class _AssignmentsTileState extends State<AssignmentsTile> {
   String dueTime = '';
   String timeNeeded = '';
 
+  bool isLoading = true;
+
   @override
   void initState() {
     super.initState();
-    fetchAssignmentDetails();
+    fetchAssignmentDetails().then((_) {
+      setState(() {
+        isLoading =
+            false; // Set isLoading to false when fetchAssignmentDetails completes
+      });
+    });
   }
 
   fetchAssignmentDetails() async {
@@ -43,15 +50,15 @@ class _AssignmentsTileState extends State<AssignmentsTile> {
         .doc(widget.documentID)
         .get();
     setState(() {
-      check = document['check'];
-      title = document['title'];
-      type = document['taskType'];
-      subject = document['subject'];
-      priority = document['priority'];
-      description = document['description'];
-      dueDate = document['dueDate'];
-      dueTime = document['dueTime'];
-      timeNeeded = document['timeNeeded'];
+      check = document.get('check') ?? false;
+      title = document.get('title') ?? '';
+      type = document.get('taskType') ?? '';
+      subject = document.get('subject') ?? '';
+      priority = document.get('priority') ?? '';
+      description = document.get('description') ?? '';
+      dueDate = document.get('dueDate') ?? '';
+      dueTime = document.get('dueTime') ?? '';
+      timeNeeded = document.get('timeNeeded') ?? '';
     });
   }
 
