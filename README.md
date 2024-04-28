@@ -1,6 +1,6 @@
-# classtime_app
+# ClassTime
 
-A new Flutter project.
+A personal mobile app project, aimed at helping students track time and improve productivity.
 
 ## Getting Started
 
