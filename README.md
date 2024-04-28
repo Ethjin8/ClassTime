@@ -2,15 +2,12 @@
 
 A personal mobile app project, aimed at helping students track time and improve productivity.
 
-## Getting Started
+## Using the App
 
-This project is a starting point for a Flutter application.
+Create a new account and log in to the app.
 
-A few resources to get you started if this is your first Flutter project:
+To create new assignments, click the circular plus button at the bottom of the screen. Select assignment attributes given on the page, and then press "Add Assignment"
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+To view assignment attributes, click on the assignment tile. To check off assignments, click the box on the left side of the assignment tile. To delete assignments, swipe left on the assignment tile and click the red delete button. 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Overdue assignments are marked by a bright red tile background.
